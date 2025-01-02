@@ -2,7 +2,9 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { RESUME_DATA } from "@/data/resume-data";
 
-type Education = (typeof RESUME_DATA)["education"][number];
+type Education = (typeof RESUME_DATA)["education"][number] & {
+  key: string;
+};
 
 interface EducationPeriodProps {
   start: Education["start"];
@@ -78,7 +80,7 @@ export function Education({ education }: EducationListProps) {
         aria-labelledby="education-section"
       >
         {education.map((item) => (
-          <article key={item.school} role="article">
+          <article key={item.key} role="article">
             <EducationItem education={item} />
           </article>
         ))}
